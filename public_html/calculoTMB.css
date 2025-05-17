@@ -1,0 +1,20 @@
+.container {
+    margin-top: 100px;
+}
+
+#nomeAlimento {
+    width: 300px;
+}
+
+#proteina {
+    width: 300px;
+}
+
+#carboidrato {
+    width: 300px;
+}
+
+#gordura {
+    width: 300px;
+}
+
