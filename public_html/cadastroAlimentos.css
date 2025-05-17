@@ -1,3 +1,7 @@
+#menu {
+    background-color: #89b789;
+}
+
 .container {
     margin-top: 100px;
 }
@@ -16,5 +20,10 @@
 
 #gordura {
     width: 400px;
+}
+
+#botao {
+    background-color: #89b789;
+    border: 0;
 }
 

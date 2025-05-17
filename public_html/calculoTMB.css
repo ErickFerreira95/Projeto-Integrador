@@ -18,3 +18,11 @@
     width: 300px;
 }
 
+#menu {
+    background-color: #89b789;
+}
+
+#botao {
+    background-color: #89b789;
+    border: 0;
+}
