@@ -1,0 +1,29 @@
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cálculo TMB</title> 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </head> 
+    <body>
+        <div class="container"> 
+            <h1>Cálculo TMB</h1> 
+            <hr> 
+            <h2>Calcular TMB</h2> 
+            <form action="salvarAvaliacao" object="filme" method="POST">
+                <input type="radio" name="masculino" value="masculino"> Masculino
+                <input type="radio" name="feminino" value="feminino"> Feminino
+                <input type="text" field="idade" placeholder="Idade(anos)" class="form-control mt-4 col-4">
+                <input type="text" field="peso" placeholder="Peso(kg)" class="form-control mt-4 col-4">
+                <input type="text" field="altura" placeholder="Altura(cm)" class="form-control mt-4 col-4">
+                <input type="hidden" field="id">
+                <br>
+                <button type="submit" class="btn btn-success col-2">Calcular</button> <br>
+                <br> <label>Resultado:</label>
+                <output type="text" name="resultado"></output>
+            </form> 
+             <hr> 
+             <a href="/">Voltar</a> 
+        </div> 
+    </body>         
+</html>
