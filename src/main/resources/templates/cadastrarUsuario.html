@@ -1,0 +1,24 @@
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cadastre-se</title> 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </head> 
+    <body>
+        <div class="container"> 
+            <h1>Cadastrar usuário</h1> 
+            <hr>  
+            <form action="cadastrarUsuário" object="" method="POST">
+                <input type="text" field="nome" placeholder="Insira seu nome" class="form-control mt-4 col-4">
+                <input type="email" field="email" placeholder="Insira seu email" class="form-control mt-4 col-4">
+                <input type="password" field="senha" placeholder="Insira sua senha" class="form-control mt-4 col-4">
+                <input type="hidden" field="id">
+                <br>
+                <button type="submit" class="btn btn-success col-2">Cadastrar</button>
+            </form> 
+             <hr> 
+             <a href="/">Voltar</a> 
+        </div> 
+    </body>         
+</html>
