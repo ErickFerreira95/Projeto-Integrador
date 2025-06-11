@@ -4,21 +4,62 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Cadastre-se</title> 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
     </head> 
     <body>
         <div class="container"> 
             <h1>Cadastrar usuário</h1> 
             <hr>  
-            <form action="cadastrarUsuário" object="" method="POST">
-                <input type="text" field="nome" placeholder="Insira seu nome" class="form-control mt-4 col-4">
-                <input type="email" field="email" placeholder="Insira seu email" class="form-control mt-4 col-4">
-                <input type="password" field="senha" placeholder="Insira sua senha" class="form-control mt-4 col-4">
+            <form id="cadastrarUsuario" action="cadastrarUsuario" object="" method="POST">
+                <input name="nome" id="nome" type="text" field="nome" placeholder="Insira seu nome" class="form-control mt-4 col-4" required minlenght="2">
+                <input name="email" id="email" type="email" field="email" placeholder="Insira seu email" class="form-control mt-4 col-4" required>
+                <input name="senha" id="senha" type="password" field="senha" placeholder="Insira sua senha" class="form-control mt-4 col-4" required minlenght="6">
                 <input type="hidden" field="id">
                 <br>
                 <button type="submit" class="btn btn-success col-2">Cadastrar</button>
-            </form> 
-             <hr> 
-             <a href="/">Voltar</a> 
-        </div> 
-    </body>         
+            </form>
+             <hr>
+             <a href="/">Voltar</a>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("#cadastrarUsuario").validate({
+                    rules: {
+                        nome: {
+                            required: true,
+                            minlength: 2
+                        },
+                        email: {
+                            required: true,
+                            email: true
+                        },
+                        senha: {
+                            required: true,
+                            minlength: 6
+                        }
+                    },
+                    messages: {
+                        nome: {
+                            required: "Por favor, insira seu nome",
+                            minlength: "O nome deve ter pelo menos 2 caracteres"
+                        },
+                        email: {
+                            required: "Por favor, insira seu email",
+                            email: "Digite um email válido"
+                        },
+                        senha: {
+                            required: "Por favor, insira uma senha",
+                            minlength: "A senha deve ter no mínimo 6 caracteres"
+                        }
+                    },
+                    submitHandler: function (form) {
+                        // Se tudo estiver válido, este código é executado
+                        alert("Usuário cadastrado com sucesso!");
+                        form.submit();
+                    }
+                });
+            });
+        </script>
+    </body>
 </html>
