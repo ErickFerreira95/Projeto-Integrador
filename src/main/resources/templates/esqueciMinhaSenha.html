@@ -4,20 +4,53 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Esqueci minha senha</title> 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
     </head> 
     <body>
         <div class="container"> 
             <h1>Atualizar senha</h1> 
             <hr>  
-            <form action="atualizarSenha" object="" method="POST">
-                <input type="text" field="email" placeholder="Insira o email" class="form-control mt-4 col-4">
-                <input type="text" field="novaSenha" placeholder="Insira a nova senha" class="form-control mt-4 col-4">
+            <form id="atualizarSenha" action="atualizarSenha" object="" method="POST">
+                <input name="email" id="email" type="email" field="email" placeholder="Insira seu email" class="form-control mt-4 col-4" required>
+                <input name="senha" id="senha" type="password" field="senha" placeholder="Insira a nova senha" class="form-control mt-4 col-4" required minlenght="6">
                 <input type="hidden" field="id">
                 <br>
-                <button type="submit" class="btn btn-success col-2">Atualizar</button>
+                <button type="submit" class="btn btn-success col-2">Cadastrar</button>
             </form> 
              <hr> 
              <a href="/">Voltar</a> 
-        </div> 
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("#atualizarSenha").validate({
+                    rules: {
+                        email: {
+                            required: true,
+                            email: true
+                        },
+                        senha: {
+                            required: true,
+                            minlength: 6
+                        }
+                    },
+                    messages: {
+                        email: {
+                            required: "Por favor, insira seu email",
+                            email: "Digite um email válido"
+                        },
+                        senha: {
+                            required: "Por favor, insira uma senha",
+                            minlength: "A senha deve ter no mínimo 6 caracteres"
+                        }
+                    },
+                    submitHandler: function (form) {
+                        // Se tudo estiver válido, este código é executado
+                        alert("Senha cadastrada com sucesso!");
+                        form.submit();
+                    }
+                });
+            });
+        </script>
     </body>         
 </html>
