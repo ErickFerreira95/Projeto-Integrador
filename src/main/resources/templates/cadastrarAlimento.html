@@ -4,24 +4,99 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Cadastrar Alimento</title> 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
     </head> 
     <body>
         <div class="container"> 
             <h1>Cadastrar alimento</h1> 
             <hr>  
-            <form action="cadastrarAlimento" object="" method="POST">
-                <input type="text" field="nome" placeholder="Nome alimento" class="form-control mt-4 col-4">
-                <input type="text" field="quantidade" placeholder="Quantidade(g)" class="form-control mt-4 col-4">
-                <input type="text" field="proteina" placeholder="Qtd proteína(g)" class="form-control mt-4 col-4">
-                <input type="text" field="carboidrato" placeholder="Qtd carboidrato(g)" class="form-control mt-4 col-4">
-                <input type="text" field="gordura" placeholder="Qtd gordura(g)" class="form-control mt-4 col-4">
-                <input type="text" field="kcal" placeholder="Kcal" class="form-control mt-4 col-4">
+            <form id="cadastroAlimento" action="" object="" method="POST">
+                <input name="nomeAlimento" id="nomeAlimento" type="text" field="nomeAlimento" placeholder="Nome alimento" class="form-control mt-4 col-4" required minlength="2">
+                <input name="quantidade" id="quantidade" type="number" field="quantidade" placeholder="Quantidade(g)" class="form-control mt-4 col-4" required>
+                <input name="proteina" id="proteina" type="number" field="proteina" placeholder="Qtd proteína(g)" class="form-control mt-4 col-4" required>
+                <input name="carboidrato" id="carboidrato" type="number" field="carboidrato" placeholder="Qtd carboidrato(g)" class="form-control mt-4 col-4" required>
+                <input name="gordura" id="gordura" type="number" field="gordura" placeholder="Qtd gordura(g)" class="form-control mt-4 col-4" required>
+                <input name="kcal" id="kcal" type="number" field="kcal" placeholder="Kcal" class="form-control mt-4 col-4" required>
                 <input type="hidden" field="id">
                 <br>
                 <button type="submit" class="btn btn-success col-2">Cadastrar</button>
-            </form> 
-             <hr> 
-             <a href="/">Voltar</a> 
-        </div> 
-    </body>         
+            </form>
+             <hr>
+             <a href="/">Voltar</a>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("#cadastroAlimento").validate({
+                    rules: {
+                        nomeAlimento: {
+                            required: true,
+                            minlength: 2
+                        },
+                        quantidade: {
+                            required: true,
+                            number: true,
+                            min: 1
+                        },
+                        proteina: {
+                            required: true,
+                            number: true,
+                            min: 0
+                        },
+                        carboidrato: {
+                            required: true,
+                            number: true,
+                            min: 0
+                        },
+                        gordura: {
+                            required: true,
+                            number: true,
+                            min: 0
+                        },
+                        kcal: {
+                            required: true,
+                            number: true,
+                            min: 0
+                        }
+                    },
+                    messages: {
+                        nomeAlimento: {
+                            required: "Informe o nome do alimento",
+                            minlength: "Mínimo de 2 caracteres"
+                        },
+                        quantidade: {
+                            required: "Informe a quantidade",
+                            number: "Digite um número válido",
+                            min: "Deve ser maior que zero"
+                        },
+                        proteina: {
+                            required: "Informe a proteína",
+                            number: "Digite um número válido",
+                            min: "Não pode ser negativo"
+                        },
+                        carboidrato: {
+                            required: "Informe o carboidrato",
+                            number: "Digite um número válido",
+                            min: "Não pode ser negativo"
+                        },
+                        gordura: {
+                            required: "Informe a gordura",
+                            number: "Digite um número válido",
+                            min: "Não pode ser negativo"
+                        },
+                        kcal: {
+                            required: "Informe as calorias",
+                            number: "Digite um número válido",
+                            min: "Não pode ser negativo"
+                        }
+                    },
+                    submitHandler: function (form) {
+                        // Tudo válido: pode enviar
+                        alert("Alimento cadastrado com sucesso!");
+                        form.submit();
+                    }
+                });
+            });
+        </script>
+    </body>
 </html>
