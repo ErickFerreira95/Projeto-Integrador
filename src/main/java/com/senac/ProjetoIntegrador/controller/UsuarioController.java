@@ -39,4 +39,11 @@ public class UsuarioController {
         }
         return "redirect:/";
     }
+    
+    @GetMapping("/criarAlimento")
+    public String criarAlimento(Model model) {
+        UsuarioEntity alimento = new UsuarioEntity();
+        model.addAttribute("alimento", alimento);
+        return "cadastrarAlimento";
+    }
 }
