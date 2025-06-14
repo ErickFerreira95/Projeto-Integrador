@@ -43,7 +43,7 @@ public class UsuarioController {
     public String MostrarPaginaInicial() {
         return "index";
     }
-    
+
     @PostMapping("/fazerLogin")
     public String processarLogin(@ModelAttribute("usuario") UsuarioEntity usuario, Model model) {
         boolean autenticado = usuarioService.autenticarUsuario(usuario.getEmail(), usuario.getSenha());
@@ -53,6 +53,24 @@ public class UsuarioController {
         } else {
             model.addAttribute("erro", "E-mail ou senha inválidos.");
             return "login";
+        }
+    }
+    
+    @GetMapping("/atualizarSenha")
+    public String mostrarFormularioRedefinir(Model model) {
+        model.addAttribute("usuario", new UsuarioEntity()); // classe com email e senha
+        return "esqueciMinhaSenha";
+    }
+
+    @PostMapping("/salvarSenha")
+    public String redefinirSenha(@ModelAttribute("usuario") UsuarioEntity usuario, Model model) {
+        boolean atualizado = usuarioService.atualizarSenha(usuario.getEmail(), usuario.getSenha());
+
+        if (atualizado) {
+            return "redirect:/";
+        } else {
+            model.addAttribute("erro", "E-mail não encontrado.");
+            return "esqueciMinhaSenha";
         }
     }
 }
