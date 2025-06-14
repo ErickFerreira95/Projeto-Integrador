@@ -9,41 +9,50 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UsuarioController {
-    
+
     @Autowired
     UsuarioService usuarioService;
-    
+
     @GetMapping("/")
-    public String viewHomePage() {
+    public String MostrarPaginaLogin(Model model) {
+        model.addAttribute("usuario", new UsuarioEntity());
         return "login";
     }
-    
+
     @GetMapping("/criarUsuario")
     public String criarUsuario(Model model) {
         UsuarioEntity usuario = new UsuarioEntity();
         model.addAttribute("usuario", usuario);
         return "cadastrarUsuario";
     }
-    
+
     @PostMapping("/salvarUsuario")
-    public String salvarUsuario(@Valid @ModelAttribute("usuario") UsuarioEntity usuario, BindingResult result) {
-        if (result.hasErrors()) {
-            return "inserir";
-        }
+    public String salvarUsuario(@ModelAttribute("usuario") UsuarioEntity usuario) {
         if (usuario.getId() == null) {
             usuarioService.criarUsuario(usuario);
         }
         return "redirect:/";
     }
+
+    @GetMapping("/MostrarPaginaInicial")
+    public String MostrarPaginaInicial() {
+        return "index";
+    }
     
-    @GetMapping("/criarAlimento")
-    public String criarAlimento(Model model) {
-        UsuarioEntity alimento = new UsuarioEntity();
-        model.addAttribute("alimento", alimento);
-        return "cadastrarAlimento";
+    @PostMapping("/fazerLogin")
+    public String processarLogin(@ModelAttribute("usuario") UsuarioEntity usuario, Model model) {
+        boolean autenticado = usuarioService.autenticarUsuario(usuario.getEmail(), usuario.getSenha());
+
+        if (autenticado) {
+            return "index"; // Redireciona para página protegida
+        } else {
+            model.addAttribute("erro", "E-mail ou senha inválidos.");
+            return "login";
+        }
     }
 }

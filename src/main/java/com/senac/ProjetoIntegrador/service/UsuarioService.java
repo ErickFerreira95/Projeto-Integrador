@@ -17,4 +17,8 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
         return usuario;
     }
+    
+    public boolean autenticarUsuario(String email, String senha) {
+        return usuarioRepository.findByEmailAndSenha(email, senha).isPresent();
+    }
 }

@@ -19,8 +19,8 @@ public class UsuarioControl {
     UsuarioService usuarioService;
     
     @PostMapping("/adicionar")
-    public ResponseEntity<UsuarioEntity> addFilme(@RequestBody UsuarioEntity usuario) {
+    public ResponseEntity<UsuarioEntity> addUsuario(@RequestBody UsuarioEntity usuario) {
         var novoUsuario = usuarioService.criarUsuario(usuario);
         return new ResponseEntity<>(novoUsuario, HttpStatus.CREATED);
-    }
+    }   
 }

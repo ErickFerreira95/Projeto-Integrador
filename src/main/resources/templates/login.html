@@ -19,18 +19,19 @@
                                 <div class="mb-md-5 mt-md-4 pb-5">
                                     <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                                     <p class="text-white-50 mb-5">Insira login e senha!</p>
-                                    <form id="login" action="" object="" method="POST">
+                                    <form id="login" action="#" th:action="@{/fazerLogin}" th:object="${usuario}" method="POST">
                                         <div data-mdb-input-init class="form-outline form-white mb-4">
-                                            <input name="email" type="email" id="email" class="form-control form-control-lg" required/>
+                                            <input name="email" th:field="*{email}" type="email" id="email" class="form-control form-control-lg" required/>
                                             <label class="form-label" for="typeEmailX">Email</label>
                                         </div>
                                         <div data-mdb-input-init class="form-outline form-white mb-4">
-                                            <input name="senha" type="password" id="senha" class="form-control form-control-lg" required minlenght="6"/>
+                                            <input name="senha" th:field="*{senha}" type="password" id="senha" class="form-control form-control-lg" required minlength="6"/>
                                             <label class="form-label" for="typePasswordX">Senha</label>
                                         </div>
                                     <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Esqueceu a senha?</a></p>
                                     <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Login</button> <br>
                                     </form>
+                                    <p th:if="${erro}" th:text="${erro}" style="color:red;"></p>
                                     <br> <p class="mb-0">Não tem uma conta? <a th:href="@{/criarUsuario}" class="text-white-50 fw-bold">Cadastre-se</a></p>
                                 </div>
                             </div>
@@ -61,11 +62,6 @@
                             required: "Por favor, insira uma senha",
                             minlength: "A senha deve ter no mínimo 6 caracteres"
                         }
-                    },
-                    submitHandler: function (form) {
-                        // Se tudo estiver válido, este código é executado
-                        alert("Senha cadastrada com sucesso!");
-                        form.submit();
                     }
                 });
             });
