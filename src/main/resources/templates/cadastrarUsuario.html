@@ -11,10 +11,10 @@
         <div class="container"> 
             <h1>Cadastrar usuário</h1> 
             <hr>  
-            <form id="cadastrarUsuario" action="cadastrarUsuario" object="" method="POST">
-                <input name="nome" id="nome" type="text" field="nome" placeholder="Insira seu nome" class="form-control mt-4 col-4" required minlenght="2">
-                <input name="email" id="email" type="email" field="email" placeholder="Insira seu email" class="form-control mt-4 col-4" required>
-                <input name="senha" id="senha" type="password" field="senha" placeholder="Insira sua senha" class="form-control mt-4 col-4" required minlenght="6">
+            <form id="cadastrarUsuario" action="#" th:action="@{/salvarUsuario}" th:object="${usuario}" method="POST">
+                <input name="nome" th:field="*{nome}" id="nome" type="text" field="nome" placeholder="Insira seu nome" class="form-control mt-4 col-4" required minlenght="2">
+                <input name="email" th:field="*{email}" id="email" type="email" field="email" placeholder="Insira seu email" class="form-control mt-4 col-4" required>
+                <input name="senha" th:field="*{senha}" id="senha" type="password" field="senha" placeholder="Insira sua senha" class="form-control mt-4 col-4" required minlenght="6">
                 <input type="hidden" field="id">
                 <br>
                 <button type="submit" class="btn btn-success col-2">Cadastrar</button>
