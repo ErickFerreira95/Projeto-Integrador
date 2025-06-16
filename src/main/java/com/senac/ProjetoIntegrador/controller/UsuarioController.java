@@ -1,5 +1,6 @@
 package com.senac.ProjetoIntegrador.controller;
 
+import com.senac.ProjetoIntegrador.data.AlimentoEntity;
 import com.senac.ProjetoIntegrador.data.UsuarioEntity;
 import com.senac.ProjetoIntegrador.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -23,6 +24,11 @@ public class UsuarioController {
         model.addAttribute("usuario", new UsuarioEntity());
         return "login";
     }
+    
+    @GetMapping("/MostrarPaginaInicial")
+    public String MostrarPaginaInicial() {
+        return "index";
+    }
 
     @GetMapping("/criarUsuario")
     public String criarUsuario(Model model) {
@@ -37,11 +43,6 @@ public class UsuarioController {
             usuarioService.criarUsuario(usuario);
         }
         return "redirect:/";
-    }
-
-    @GetMapping("/MostrarPaginaInicial")
-    public String MostrarPaginaInicial() {
-        return "index";
     }
 
     @PostMapping("/fazerLogin")

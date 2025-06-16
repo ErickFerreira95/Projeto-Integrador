@@ -1,0 +1,35 @@
+package com.senac.ProjetoIntegrador.controller;
+
+import com.senac.ProjetoIntegrador.data.AlimentoEntity;
+import com.senac.ProjetoIntegrador.service.AlimentoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+public class AlimentoController {
+    
+    @Autowired
+    AlimentoService alimentoService;
+    
+    @GetMapping("/criarAlimento")
+    public String criarAlimento(Model model) {
+        AlimentoEntity alimento = new AlimentoEntity();
+        model.addAttribute("alimento", alimento);
+        return "cadastrarAlimento";
+    }
+    
+    @PostMapping("/salvarAlimento")
+    public String salvarAlimento(@ModelAttribute("alimento") AlimentoEntity alimento, BindingResult result) {
+        if (alimento.getId() == null) {
+            alimentoService.criarAlimento(alimento);
+        } else {
+            alimentoService.atualizarAlimento(alimento.getId(), alimento);
+        }
+        return "index";
+    }
+}

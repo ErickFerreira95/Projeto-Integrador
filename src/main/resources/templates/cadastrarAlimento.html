@@ -11,19 +11,18 @@
         <div class="container"> 
             <h1>Cadastrar alimento</h1> 
             <hr>  
-            <form id="cadastroAlimento" action="" object="" method="POST">
-                <input name="nomeAlimento" id="nomeAlimento" type="text" field="nomeAlimento" placeholder="Nome alimento" class="form-control mt-4 col-4" required minlength="2">
-                <input name="quantidade" id="quantidade" type="number" field="quantidade" placeholder="Quantidade(g)" class="form-control mt-4 col-4" required>
-                <input name="proteina" id="proteina" type="number" field="proteina" placeholder="Qtd proteína(g)" class="form-control mt-4 col-4" required>
-                <input name="carboidrato" id="carboidrato" type="number" field="carboidrato" placeholder="Qtd carboidrato(g)" class="form-control mt-4 col-4" required>
-                <input name="gordura" id="gordura" type="number" field="gordura" placeholder="Qtd gordura(g)" class="form-control mt-4 col-4" required>
-                <input name="kcal" id="kcal" type="number" field="kcal" placeholder="Kcal" class="form-control mt-4 col-4" required>
-                <input type="hidden" field="id">
+            <form id="cadastroAlimento" action="#" th:action="@{/salvarAlimento}" th:object="${alimento}" method="POST">
+                <input name="nomeAlimento" id="nomeAlimento" type="text" th:field="*{nomeAlimento}" placeholder="Nome alimento" class="form-control mt-4 col-4" required minlength="2">
+                <input name="quantidade" id="quantidade" type="number" th:field="*{quantidade}" placeholder="Quantidade(g)" class="form-control mt-4 col-4" required>
+                <input name="proteina" id="proteina" type="number" th:field="*{proteina}" placeholder="Qtd proteína(g)" class="form-control mt-4 col-4" required>
+                <input name="carboidrato" id="carboidrato" type="number" th:field="*{carboidrato}" placeholder="Qtd carboidrato(g)" class="form-control mt-4 col-4" required>
+                <input name="gordura" id="gordura" type="number" th:field="*{gordura}" placeholder="Qtd gordura(g)" class="form-control mt-4 col-4" required>
+                <input name="kcal" id="kcal" type="number" th:field="*{kcal}" placeholder="Kcal" class="form-control mt-4 col-4" required>
                 <br>
                 <button type="submit" class="btn btn-success col-2">Cadastrar</button>
             </form>
              <hr>
-             <a href="/">Voltar</a>
+            <a th:href="@{/index}">Voltar</a>
         </div>
         <script>
             $(document).ready(function () {
