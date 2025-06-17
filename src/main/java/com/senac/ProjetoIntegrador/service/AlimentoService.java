@@ -2,6 +2,7 @@ package com.senac.ProjetoIntegrador.service;
 
 import com.senac.ProjetoIntegrador.data.AlimentoEntity;
 import com.senac.ProjetoIntegrador.data.AlimentoRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 public class AlimentoService {
     
     @Autowired
-
     AlimentoRepository alimentoRepository;
 
     public AlimentoEntity criarAlimento(AlimentoEntity alimento) {
@@ -32,5 +32,9 @@ public class AlimentoService {
     
     public AlimentoEntity getAlimentoId(Integer alimentoId) {
         return alimentoRepository.findById(alimentoId).orElse(null);
+    }
+    
+    public List<AlimentoEntity> listarTodosAlimentos() {
+        return alimentoRepository.findAll();
     }
 }

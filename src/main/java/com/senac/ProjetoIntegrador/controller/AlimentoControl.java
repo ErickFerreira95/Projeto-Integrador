@@ -2,6 +2,7 @@ package com.senac.ProjetoIntegrador.controller;
 
 import com.senac.ProjetoIntegrador.data.AlimentoEntity;
 import com.senac.ProjetoIntegrador.service.AlimentoService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,5 +38,11 @@ public class AlimentoControl {
     public ResponseEntity<AlimentoEntity> getAlimentoById(@PathVariable Integer id) {
         AlimentoEntity alimento = alimentoService.getAlimentoId(id);
         return new ResponseEntity<>(alimento, HttpStatus.OK);
+    }
+    
+    @GetMapping("/listar")
+    public ResponseEntity<List> getAllAlimentos() {
+        List<AlimentoEntity> alimentos = alimentoService.listarTodosAlimentos();
+        return new ResponseEntity<>(alimentos, HttpStatus.OK);
     }
 }

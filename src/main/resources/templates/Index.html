@@ -27,10 +27,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    <tr th:each="alimento : ${listarAlimentos}">
+                        <td th:text="${alimento.id}" class="table-light">
+                        <td th:text="${alimento.nomeAlimento}" class="table-light">
+                        <td th:text="${alimento.quantidade}" class="table-light">
+                        <td th:text="${alimento.proteina}" class="table-light">
+                        <td th:text="${alimento.carboidrato}" class="table-light">
+                        <td th:text="${alimento.gordura}" class="table-light">
+                        <td th:text="${alimento.kcal}" class="table-light">
+                            
+                            
+                        </td>
                 </tbody>
             </table>
         </div>
-
     </body> 
 </html>

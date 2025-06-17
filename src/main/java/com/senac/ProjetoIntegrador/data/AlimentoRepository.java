@@ -8,4 +8,14 @@ import org.springframework.stereotype.Repository;
 public interface AlimentoRepository extends JpaRepository<AlimentoEntity, Integer>{
     
     AlimentoEntity findByNomeAlimento(String nomeAlimento);
+    
+    List<AlimentoEntity> findByNomeAlimentoContaining(String nomeAlimento);
+    
+    List<AlimentoEntity> findByNomeAlimentoStartingWith(String nomeAlimento);
+
+    List<AlimentoEntity> findByNomeAlimentoEndingWith(String nomeAlimento);
+
+    List<AlimentoEntity> findByOrderByNomeAlimentoAsc();
+
+    List<AlimentoEntity> findByOrderByNomeAlimentoDesc();
 }

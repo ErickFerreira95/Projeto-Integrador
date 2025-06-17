@@ -1,6 +1,5 @@
 package com.senac.ProjetoIntegrador.controller;
 
-import com.senac.ProjetoIntegrador.data.AlimentoEntity;
 import com.senac.ProjetoIntegrador.data.UsuarioEntity;
 import com.senac.ProjetoIntegrador.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -18,6 +17,9 @@ public class UsuarioController {
 
     @Autowired
     UsuarioService usuarioService;
+    
+    @Autowired
+    AlimentoController controller;
 
     @GetMapping("/")
     public String MostrarPaginaLogin(Model model) {
@@ -25,11 +27,6 @@ public class UsuarioController {
         return "login";
     }
     
-    @GetMapping("/MostrarPaginaInicial")
-    public String MostrarPaginaInicial() {
-        return "index";
-    }
-
     @GetMapping("/criarUsuario")
     public String criarUsuario(Model model) {
         UsuarioEntity usuario = new UsuarioEntity();
@@ -50,13 +47,13 @@ public class UsuarioController {
         boolean autenticado = usuarioService.autenticarUsuario(usuario.getEmail(), usuario.getSenha());
 
         if (autenticado) {
-            return "index"; // Redireciona para página protegida
+            return controller.mostrarIndex(model); // Redireciona para página protegida
         } else {
             model.addAttribute("erro", "E-mail ou senha inválidos.");
             return "login";
         }
     }
-    
+
     @GetMapping("/atualizarSenha")
     public String mostrarFormularioRedefinir(Model model) {
         model.addAttribute("usuario", new UsuarioEntity()); // classe com email e senha
