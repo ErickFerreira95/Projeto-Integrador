@@ -12,24 +12,26 @@
             <h1>Cálculo TMB</h1> 
             <hr> 
             <h2>Calcular TMB</h2> 
-            <form id="tmb" action="calcularTmb" object="" method="POST">
+            <form id="tmb" onsubmit="return calcularTmb(event)">
                 <input id="masculino" type="radio" name="genero" value="masculino">
                 <label for="masculino">Masculino</label>
-                
+
                 <input id="feminino" type="radio" name="genero" value="feminino">
                 <label for="feminino">Feminino</label>
-                
+
                 <input id="idade" name="idade" type="number" field="idade" placeholder="Idade(anos)" class="form-control mt-4 col-4" required minlenght="1">
                 <input id="peso" name="peso" type="number" field="peso" placeholder="Peso(kg)" class="form-control mt-4 col-4" required minlenght="1">
                 <input id="altura" name="altura" type="number" field="altura" placeholder="Altura(cm)" class="form-control mt-4 col-4" required minlenght="2">
-                <input type="hidden" field="id">
+                <input id="fator" name="fator" type="number" field="fator" placeholder="Fator de atividade(FA)" class="form-control mt-4 col-4" required minlenght="2">
                 <br>
                 <button type="submit" class="btn btn-success col-2">Calcular</button> <br>
-                <br> <label>Resultado:</label>
-                <output type="text" name="resultado"></output>
+                <br> <label>Resultado: <output id="resultado"></output> </label> 
             </form> 
-             <hr> 
-             <a href="/">Voltar</a> 
+             <hr>
+            <p>Fator de atividade (FA):
+                1,3 - sedentário. 1,4 - levemente ativo. 1,5 - treino e cardio iniciante a intermediário quase todos os dias, com rotina de pouca atividade. 1,6 - treino e cardio avançado ou extremamente avançado com rotina de pouca atividade. 1,7 - treino de cardio avançado ou extremamente avançado com rotina de muita atividade ou hormonizado*.</p>
+            <hr>
+             <a th:href="@{/mostrarIndex}">Voltar</a> 
         </div>
         <script>
             $(document).ready(function () {
@@ -48,6 +50,11 @@
                             required: true,
                             number: true,
                             minlength: 2
+                        },
+                        fator: {
+                            required: true,
+                            number: true,
+                            minlength: 2
                         }
                     },
                     messages: {
@@ -62,15 +69,32 @@
                         altura: {
                             required: "Por favor, insira sua altura",
                             minlength: "A altura deve ter no mínimo 2 caracteres"
+                        },
+                        fator: {
+                            required: "Por favor, insira o fator de atividade",
+                            minlength: "O fator deve ter no mínimo 2 caracteres"
                         }
-                    },
-                    submitHandler: function (form) {
-                        // Se tudo estiver válido, este código é executado
-                        alert("Cálculo realizado com sucesso!");
-                        form.submit();
                     }
                 });
             });
-                        </script>
+
+            function calcularTmb(event) {
+                event.preventDefault();
+                let idade = document.getElementById("idade").value;
+                let peso = document.getElementById("peso").value;
+                let altura = document.getElementById("altura").value;
+                let fator = document.getElementById("fator").value;
+                let tmbHomem = fator * (88.362 + (13.397 * peso) + (4.799 * altura) - (5.677 * idade));
+                let tmbMulher = fator * (447.593 + (9.247 * peso) + (3.098 * altura) - (4.330 * idade));
+
+                if (!document.getElementById("masculino").checked && !document.getElementById("feminino").checked) {
+                    alert("Escolha uma opção: Masculino ou Feminino");
+                } else if (document.getElementById("masculino").checked) {
+                    document.getElementById("resultado").value = tmbHomem.toFixed(2);
+                } else {
+                    document.getElementById("resultado").value = tmbMulher.toFixed(2);
+                }
+            }
+        </script>
     </body>         
 </html>

@@ -71,4 +71,11 @@ public class UsuarioController {
             return "esqueciMinhaSenha";
         }
     }
+    
+    @GetMapping("/criarTmb")
+    public String criarTmb(Model model) {
+        UsuarioEntity usuario = new UsuarioEntity();
+        model.addAttribute("usuario", usuario);
+        return "tmb";
+    }
 }
