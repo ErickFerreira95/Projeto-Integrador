@@ -49,4 +49,10 @@ public class AlimentoController {
         model.addAttribute("alimento", alimento);
         return "atualizar";
     }
+    
+    @GetMapping("/deletarAlimento/{id}")
+    public String deletarAlimento(@PathVariable(value = "id") Integer id) {
+        alimentoService.deletarAlimento(id);
+        return "redirect:/mostrarIndex";
+    }
 }
