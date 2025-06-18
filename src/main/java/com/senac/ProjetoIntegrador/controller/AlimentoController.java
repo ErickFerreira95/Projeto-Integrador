@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,7 +19,6 @@ public class AlimentoController {
 
     @Autowired
     private AlimentoService alimentoService;
-    private AlimentoRepository alimentoRepository;
 
     @GetMapping("/criarAlimento")
     public String criarAlimento(Model model) {
@@ -41,5 +41,12 @@ public class AlimentoController {
     public String mostrarIndex(Model model) {
         model.addAttribute("listarAlimentos", alimentoService.listarTodosAlimentos());
         return "index";
+    }
+    
+    @GetMapping("/atualizarAlimento/{id}")
+    public String atualizarAlimento(@PathVariable(value = "id") Integer id, Model model) {
+        AlimentoEntity alimento = alimentoService.getAlimentoId(id);
+        model.addAttribute("alimento", alimento);
+        return "atualizar";
     }
 }

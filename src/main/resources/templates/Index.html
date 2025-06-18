@@ -35,7 +35,9 @@
                         <td th:text="${alimento.carboidrato}" class="table-light">
                         <td th:text="${alimento.gordura}" class="table-light">
                         <td th:text="${alimento.kcal}" class="table-light">
+                        <td> <a th:href="@{/atualizarAlimento/{id}(id=${alimento.id})}" class="btn btn-success">Atualizar</a> <br>
                             
+                        </td>    
                             
                         </td>
                 </tbody>
