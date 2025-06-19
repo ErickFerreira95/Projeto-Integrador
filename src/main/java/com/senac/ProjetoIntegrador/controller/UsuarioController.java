@@ -44,7 +44,7 @@ public class UsuarioController {
 
     @PostMapping("/fazerLogin")
     public String processarLogin(@ModelAttribute("usuario") UsuarioEntity usuario, Model model) {
-        boolean autenticado = usuarioService.autenticarUsuario(usuario.getEmail(), usuario.getSenha());
+        boolean autenticado = usuarioService.validarLogin(usuario.getEmail(), usuario.getSenha());
 
         if (autenticado) {
             return controller.mostrarIndex(model); // Redireciona para página protegida
@@ -62,7 +62,7 @@ public class UsuarioController {
 
     @PostMapping("/salvarSenha")
     public String redefinirSenha(@ModelAttribute("usuario") UsuarioEntity usuario, Model model) {
-        boolean atualizado = usuarioService.atualizarSenha(usuario.getEmail(), usuario.getSenha());
+        boolean atualizado = usuarioService.atualizarSenhaPorEmail(usuario.getEmail(), usuario.getSenha());
 
         if (atualizado) {
             return "redirect:/";
