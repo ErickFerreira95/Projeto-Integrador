@@ -22,6 +22,7 @@ public class AlimentoEntity {
     private String carboidrato;
     private String gordura;
     private String kcal;
+    private float kcalNumero;
     
     public Integer getId() {
         return id;
@@ -71,7 +72,14 @@ public class AlimentoEntity {
         this.gordura = gordura;
     }
     
+    /*public String getKcal() {
+        kcalNumero = (Float.parseFloat(proteina) * 4) + (Float.parseFloat(carboidrato) * 4) + (Float.parseFloat(gordura) * 9);
+        return String.valueOf(kcalNumero);
+    }*/
+    
     public String getKcal() {
+        kcalNumero = (Float.parseFloat(proteina) * 4) + (Float.parseFloat(carboidrato) * 4) + (Float.parseFloat(gordura) * 9);
+        kcal = String.valueOf(kcalNumero);
         return kcal;
     }
     

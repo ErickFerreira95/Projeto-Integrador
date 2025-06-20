@@ -17,7 +17,6 @@
                 <input name="proteina" id="proteina" type="number" th:field="*{proteina}" placeholder="Qtd proteína(g)" class="form-control mt-4 col-4" required>
                 <input name="carboidrato" id="carboidrato" type="number" th:field="*{carboidrato}" placeholder="Qtd carboidrato(g)" class="form-control mt-4 col-4" required>
                 <input name="gordura" id="gordura" type="number" th:field="*{gordura}" placeholder="Qtd gordura(g)" class="form-control mt-4 col-4" required>
-                <input name="kcal" id="kcal" type="number" th:field="*{kcal}" placeholder="Kcal" class="form-control mt-4 col-4" required>
                 <input type="hidden" th:field="*{id}">
                 <br>
                 <button type="submit" class="btn btn-success col-2">Atualizar</button>
@@ -52,40 +51,30 @@
                             required: true,
                             number: true,
                             min: 0
-                        },
-                        kcal: {
-                            required: true,
-                            number: true,
-                            min: 0
                         }
                     },
                     messages: {
                         nomeAlimento: {
-                            required: "Informe o nome do alimento",
+                            required: "Informe o nome do alimento. Apenas letras são permitidas.",
                             minlength: "Mínimo de 2 caracteres"
                         },
                         quantidade: {
-                            required: "Informe a quantidade",
+                            required: "Informe a quantidade. Apenas números são permitidos.",
                             number: "Digite um número válido",
                             min: "Deve ser maior que zero"
                         },
                         proteina: {
-                            required: "Informe a proteína",
+                            required: "Informe a proteína. Apenas números são permitidos.",
                             number: "Digite um número válido",
                             min: "Não pode ser negativo"
                         },
                         carboidrato: {
-                            required: "Informe o carboidrato",
+                            required: "Informe o carboidrato. Apenas números são permitidos.",
                             number: "Digite um número válido",
                             min: "Não pode ser negativo"
                         },
                         gordura: {
-                            required: "Informe a gordura",
-                            number: "Digite um número válido",
-                            min: "Não pode ser negativo"
-                        },
-                        kcal: {
-                            required: "Informe as calorias",
+                            required: "Informe a gordura. Apenas números são permitidos.",
                             number: "Digite um número válido",
                             min: "Não pode ser negativo"
                         }

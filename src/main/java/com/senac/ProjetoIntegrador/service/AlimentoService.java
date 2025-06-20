@@ -8,16 +8,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AlimentoService {
-    
+
     @Autowired
     AlimentoRepository alimentoRepository;
 
     public AlimentoEntity criarAlimento(AlimentoEntity alimento) {
         alimento.setId(null);
+        float kcal = (Float.parseFloat(alimento.getProteina()) * 4) + (Float.parseFloat(alimento.getCarboidrato()) * 4) + (Float.parseFloat(alimento.getGordura()) * 9);
+        alimento.setKcal(String.valueOf(kcal));
         alimentoRepository.save(alimento);
         return alimento;
     }
-    
+
     public AlimentoEntity atualizarAlimento(Integer alimentoId, AlimentoEntity alimentoEntity) {
         AlimentoEntity alimento = getAlimentoId(alimentoId);
         alimento.setNomeAlimento(alimentoEntity.getNomeAlimento());
@@ -29,15 +31,15 @@ public class AlimentoService {
         alimentoRepository.save(alimento);
         return alimento;
     }
-    
+
     public AlimentoEntity getAlimentoId(Integer alimentoId) {
         return alimentoRepository.findById(alimentoId).orElse(null);
     }
-    
+
     public List<AlimentoEntity> listarTodosAlimentos() {
         return alimentoRepository.findAll();
     }
-    
+
     public void deletarAlimento(Integer alimentoId) {
         AlimentoEntity alimento = getAlimentoId(alimentoId);
         alimentoRepository.deleteById(alimento.getId());
